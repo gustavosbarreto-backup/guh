@@ -123,7 +123,7 @@ namespace guhserver {
  */
 RuleEngine::RuleEngine(QObject *parent) :
     QObject(parent),
-    m_lastEvaluationTime(QDateTime::currentDateTime())
+    m_lastEvaluationTime(GuhCore::instance()->timeManager()->currentDateTime())
 {
     GuhSettings settings(GuhSettings::SettingsRoleRules);
     qCDebug(dcRuleEngine) << "loading rules from" << settings.fileName();
@@ -427,7 +427,7 @@ QList<Rule> RuleEngine::evaluateTime(const QDateTime &dateTime)
         }
     }
 
-    m_lastEvaluationTime = QDateTime::currentDateTime();
+    m_lastEvaluationTime = GuhCore::instance()->timeManager()->currentDateTime();
     return rules;
 }
 
